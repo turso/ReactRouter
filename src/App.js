@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 const Menu = () => (
   <div>
     <Link to="/">anecdotes</Link>&nbsp;
-    <Link to="create">create new</Link>&nbsp;
-    <Link to="about">about</Link>&nbsp;
+    <Link to="/create">create new</Link>&nbsp;
+    <Link to="/about">about</Link>&nbsp;
   </div>
 );
 
@@ -166,8 +166,8 @@ class App extends React.Component {
             <Menu />
             <div>
               <Route exact path="/" render={() => <AnecdoteList anecdotes={this.state.anecdotes} />} />
-              <Route exact path="/about" render={() => <About />} />
-              <Route exact path="/create" render={() => <CreateNew addnew={this.addNew} />} />
+              <Route path="/about" render={() => <About />} />
+              <Route path="/create" render={() => <CreateNew addnew={this.addNew} />} />
               <Route
                 exact
                 path="/anecdote/:id"
