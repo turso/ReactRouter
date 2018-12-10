@@ -168,17 +168,29 @@ class App extends React.Component {
       this.setState({
         notification: ''
       });
-    }, 5000);
+    }, 100000);
   };
 
   render() {
+    const notificationStyle = {
+      color: 'green',
+      fontStyle: 'italic',
+      fontSize: 16,
+      borderStyle: 'solid',
+      borderRadius: 16,
+      borderColor: 'green',
+      borderWidth: 1,
+      margin: 5,
+      padding: 5
+    };
+
     return (
       <div>
         <h1>Software anecdotes</h1>
         <Router>
           <div>
             <Menu />
-            {this.state.notification}
+            {this.state.notification === '' ? <div /> : <div style={notificationStyle}>{this.state.notification}</div>}
             <div>
               <Route exact path="/" render={() => <AnecdoteList anecdotes={this.state.anecdotes} />} />
               <Route path="/about" render={() => <About />} />
