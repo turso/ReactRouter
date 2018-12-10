@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 const Menu = () => (
   <div>
-    <a href="/">anecdotes</a>&nbsp;
-    <a href="create">create new</a>&nbsp;
-    <a href="about">about</a>&nbsp;
+    <Link to="/">anecdotes</Link>&nbsp;
+    <Link to="create">create new</Link>&nbsp;
+    <Link to="about">about</Link>&nbsp;
   </div>
 );
 
@@ -161,17 +161,19 @@ class App extends React.Component {
     return (
       <div>
         <h1>Software anecdotes</h1>
-        <Menu />
         <Router>
           <div>
-            <Route exact path="/" render={() => <AnecdoteList anecdotes={this.state.anecdotes} />} />
-            <Route exact path="/about" render={() => <About />} />
-            <Route exact path="/create" render={() => <CreateNew addnew={this.addNew} />} />
-            <Route
-              exact
-              path="/anecdote/:id"
-              render={({ match }) => <Anecdote anecdote={this.anecdoteById(match.params.id)} />}
-            />
+            <Menu />
+            <div>
+              <Route exact path="/" render={() => <AnecdoteList anecdotes={this.state.anecdotes} />} />
+              <Route exact path="/about" render={() => <About />} />
+              <Route exact path="/create" render={() => <CreateNew addnew={this.addNew} />} />
+              <Route
+                exact
+                path="/anecdote/:id"
+                render={({ match }) => <Anecdote anecdote={this.anecdoteById(match.params.id)} />}
+              />
+            </div>
           </div>
         </Router>
         <Footer />
