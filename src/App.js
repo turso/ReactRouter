@@ -1,13 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link, NavLink } from 'react-router-dom';
+import { Container, Table } from 'semantic-ui-react';
 
-const menuStyle = {
-  backgroundColor: '#a2b9bc',
-  padding: 5
-};
+// const menuStyle = {
+//   backgroundColor: '#a2b9bc',
+//   padding: 5
+// };
 
 const Menu = () => (
-  <div style={menuStyle}>
+  <div>
     <NavLink
       exact
       to="/"
@@ -42,13 +43,17 @@ const Menu = () => (
 const AnecdoteList = ({ anecdotes }) => (
   <div>
     <h2>Anecdotes</h2>
-    <ul>
-      {anecdotes.map(anecdote => (
-        <li key={anecdote.id}>
-          <Link to={`/anecdote/${anecdote.id}`}>{anecdote.content}</Link>
-        </li>
-      ))}
-    </ul>
+    <Table striped celled>
+      <Table.Body>
+        {anecdotes.map(anecdote => (
+          <Table.Row key={anecdote.id}>
+            <Table.Cell>
+              <Link to={`/anecdote/${anecdote.id}`}>{anecdote.content}</Link>
+            </Table.Cell>
+          </Table.Row>
+        ))}
+      </Table.Body>
+    </Table>
   </div>
 );
 
@@ -215,29 +220,35 @@ class App extends React.Component {
     };
 
     return (
-      <div>
-        <h1>Software anecdotes</h1>
-        <Router>
-          <div>
-            <Menu />
-            {this.state.notification === '' ? <div /> : <div style={notificationStyle}>{this.state.notification}</div>}
+      <Container>
+        <div>
+          <h1>Software anecdotes</h1>
+          <Router>
             <div>
-              <Route exact path="/" render={() => <AnecdoteList anecdotes={this.state.anecdotes} />} />
-              <Route path="/about" render={() => <About />} />
-              <Route
-                path="/create"
-                render={({ history }) => <CreateNew history={history} notify={this.notify} addNew={this.addNew} />}
-              />
-              <Route
-                exact
-                path="/anecdote/:id"
-                render={({ match }) => <Anecdote anecdote={this.anecdoteById(match.params.id)} />}
-              />
+              <Menu />
+              {this.state.notification === '' ? (
+                <div />
+              ) : (
+                <div style={notificationStyle}>{this.state.notification}</div>
+              )}
+              <div>
+                <Route exact path="/" render={() => <AnecdoteList anecdotes={this.state.anecdotes} />} />
+                <Route path="/about" render={() => <About />} />
+                <Route
+                  path="/create"
+                  render={({ history }) => <CreateNew history={history} notify={this.notify} addNew={this.addNew} />}
+                />
+                <Route
+                  exact
+                  path="/anecdote/:id"
+                  render={({ match }) => <Anecdote anecdote={this.anecdoteById(match.params.id)} />}
+                />
+              </div>
             </div>
-          </div>
-        </Router>
-        <Footer />
-      </div>
+          </Router>
+          <Footer />
+        </div>
+      </Container>
     );
   }
 }
