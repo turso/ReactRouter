@@ -1,11 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link, NavLink } from 'react-router-dom';
-import { Container, Table } from 'semantic-ui-react';
-
-// const menuStyle = {
-//   backgroundColor: '#a2b9bc',
-//   padding: 5
-// };
+import { Container, Table, Grid, Image } from 'semantic-ui-react';
 
 const Menu = () => (
   <div>
@@ -75,17 +70,21 @@ const Anecdote = ({ anecdote }) => {
 const About = () => (
   <div>
     <h2>About anecdote app</h2>
-    <p>According to Wikipedia:</p>
-
-    <em>
-      An anecdote is a brief, revealing account of an individual person or an incident. Occasionally humorous, anecdotes
-      differ from jokes because their primary purpose is not simply to provoke laughter but to reveal a truth more
-      general than the brief tale itself, such as to characterize a person by delineating a specific quirk or trait, to
-      communicate an abstract idea about a person, place, or thing through the concrete details of a short narrative. An
-      anecdote is "a story with a point."
-    </em>
-
-    <p>Software engineering is full of excellent anecdotes, at this app you can find the best and add more.</p>
+    <Grid>
+      <Grid.Column width={9}>
+        <p>According to Wikipedia:</p>
+        <em>
+          An anecdote is a brief, revealing account of an individual person or an incident. Occasionally humorous,
+          anecdotes differ from jokes because their primary purpose is not simply to provoke laughter but to reveal a
+          truth more general than the brief tale itself, such as to characterize a person by delineating a specific
+          quirk or trait, to communicate an abstract idea about a person, place, or thing through the concrete details
+          of a short narrative. An anecdote is "a story with a point."
+        </em>
+      </Grid.Column>
+      <Grid.Column width={5}>
+        <Image src="http://www.bafta.org/sites/default/files/styles/news_main/public/externals/69827f740e5eb76041a52b02ee7cb1da.jpg?itok=YEy3DXak" />
+      </Grid.Column>
+    </Grid>
   </div>
 );
 
