@@ -1,38 +1,45 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link, NavLink } from 'react-router-dom';
-import { Container, Table, Grid, Image, Button, Form } from 'semantic-ui-react';
+import { Container, Table, Grid, Image, Button, Form, Menu } from 'semantic-ui-react';
 
-const Menu = () => (
-  <div>
-    <NavLink
-      exact
-      to="/"
-      activeStyle={{
-        fontWeight: 'bold',
-        color: 'red'
-      }}
-    >
-      anecdotes
-    </NavLink>&nbsp;
-    <NavLink
-      to="/create"
-      activeStyle={{
-        fontWeight: 'bold',
-        color: 'red'
-      }}
-    >
-      create new
-    </NavLink>&nbsp;
-    <NavLink
-      to="/about"
-      activeStyle={{
-        fontWeight: 'bold',
-        color: 'red'
-      }}
-    >
-      about
-    </NavLink>&nbsp;
-  </div>
+const NavBar = () => (
+  <Menu>
+    <Menu.Item>
+      <NavLink
+        exact
+        to="/"
+        activeStyle={{
+          fontWeight: 'bold',
+          color: 'red'
+        }}
+      >
+        anecdotes
+      </NavLink>
+    </Menu.Item>
+    <Menu.Item>
+      <NavLink
+        to="/create"
+        activeStyle={{
+          fontWeight: 'bold',
+          color: 'red'
+        }}
+      >
+        create new
+      </NavLink>
+    </Menu.Item>
+
+    <Menu.Item>
+      <NavLink
+        to="/about"
+        activeStyle={{
+          fontWeight: 'bold',
+          color: 'red'
+        }}
+      >
+        about
+      </NavLink>
+    </Menu.Item>
+  </Menu>
 );
 
 const AnecdoteList = ({ anecdotes }) => (
@@ -234,7 +241,7 @@ class App extends React.Component {
           <h1>Software anecdotes</h1>
           <Router>
             <div>
-              <Menu />
+              <NavBar />
               {this.state.notification === '' ? (
                 <div />
               ) : (
