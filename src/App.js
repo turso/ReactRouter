@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link, NavLink } from 'react-router-dom';
-import { Container, Table, Grid, Image } from 'semantic-ui-react';
+import { Container, Table, Grid, Image, Button, Form } from 'semantic-ui-react';
 
 const Menu = () => (
   <div>
@@ -88,8 +88,12 @@ const About = () => (
   </div>
 );
 
+const footerStyle = {
+  marginTop: 20
+};
+
 const Footer = () => (
-  <div>
+  <div style={footerStyle}>
     Anecdote app for <a href="https://courses.helsinki.fi/fi/TKT21009/121540749">Full Stack -sovelluskehitys</a>. See{' '}
     <a href="https://github.com/mluukkai/routed-anecdotes">https://github.com/mluukkai/routed-anecdotes</a> for the
     source code.
@@ -124,24 +128,30 @@ class CreateNew extends React.Component {
   };
 
   render() {
+    const buttonStyle = {
+      marginTop: 10
+    };
+
     return (
       <div>
         <h2>create a new anecdote</h2>
-        <form onSubmit={this.handleSubmit}>
-          <div>
-            content
-            <input name="content" value={this.state.content} onChange={this.handleChange} />
-          </div>
-          <div>
-            author
-            <input name="author" value={this.state.author} onChange={this.handleChange} />
-          </div>
-          <div>
-            url for more info
-            <input name="info" value={this.state.info} onChange={this.handleChange} />
-          </div>
-          <button>create</button>
-        </form>
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Field>
+            <label>content</label>
+            <input placeholder="content" name="content" value={this.state.content} onChange={this.handleChange} />
+          </Form.Field>
+          <Form.Field>
+            <label>author</label>
+            <input placeholder="author" name="author" value={this.state.author} onChange={this.handleChange} />
+          </Form.Field>
+          <Form.Field>
+            <label>url for more info</label>
+            <input placeholder="url" name="info" value={this.state.info} onChange={this.handleChange} />
+          </Form.Field>
+          <Button style={buttonStyle} primary>
+            create
+          </Button>
+        </Form>
       </div>
     );
   }
